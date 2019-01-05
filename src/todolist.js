@@ -64,11 +64,40 @@ class ToDoList extends React.Component {
         const todo = this.state.notes.map((element, index) => {
             return (
                 <tr key={index}>
+                    
                     <td style={{ textAlign: "center" }}>{element.todo}</td>
+
                     <td style={{ textAlign: "center" }}>{element.estTime}</td>
-                    {this.state.notes[index].startTime === 0 ? <td style={{ textAlign: "center" }}><div style={{ width: "100%" }}><button name={index} className="btn btn-primary btn-sm" type="button" variant="contained" color="primary" onClick={(e) => this.start(e)}>Start</button></div></td> : <td style={{ textAlign: "center" }}>{this.state.notes[index].startTime}</td>}
-                    {this.state.notes[index].endTime === 0 ? <td style={{ textAlign: "center" }}><div style={{ width: "100%" }}><button name={index} className="btn btn-primary btn-sm" type="button" variant="contained" color="primary" onClick={(e) => this.end(e)}>End</button></div></td> : <td style={{ textAlign: "center" }}>{this.state.notes[index].endTime}</td>}
-                    {this.state.notes[index].total ? <td style={{ textAlign: "center" }}>{new Date((Number(this.state.notes[index].end) - Number(this.state.notes[index].start))).toISOString().substr(11, 8)}</td> : <td style={{ textAlign: "center" }}>--:--:--</td>}
+
+                    {
+                    this.state.notes[index].startTime === 0 ? 
+                    <td style={{ textAlign: "center" }}>
+                         <div style={{ width: "100%" }}>
+                            <button name={index} className="btn btn-primary btn-sm" type="button" variant="contained" color="primary" onClick={(e) => this.start(e)}>Start</button>
+                        </div>
+                    </td> 
+                    : 
+                    <td style={{ textAlign: "center" }}>{this.state.notes[index].startTime}</td>
+                    }
+
+                    {
+                    this.state.notes[index].endTime === 0 ? 
+                    <td style={{ textAlign: "center" }}>
+                        <div style={{ width: "100%" }}> 
+                            <button name={index} className="btn btn-primary btn-sm" type="button" variant="contained" color="primary" onClick={(e) => this.end(e)}>End</button> 
+                        </div>
+                    </td> 
+                    : 
+                    <td style={{ textAlign: "center" }}>{this.state.notes[index].endTime}</td>
+                    }
+
+                    {
+                    this.state.notes[index].total ? 
+                    <td style={{ textAlign: "center" }}>{new Date((Number(this.state.notes[index].end) - Number(this.state.notes[index].start))).toISOString().substr(11, 8)}</td> 
+                    : 
+                    <td style={{ textAlign: "center" }}>--:--:--</td>
+                    }
+
                 </tr>
             )
         })
@@ -78,7 +107,6 @@ class ToDoList extends React.Component {
                 <div className="scores-block1 clearfix">
                     <div className="bg-white shadow-sm Assessment_Results">
                         <div style={{ textAlign: "center" }}>
-                            <form>
                                 <div className="form-group row" >
                                     <label className="col-sm-3 col-form-label">Todo :  </label>
                                     <div className="col-sm-6">
@@ -94,11 +122,11 @@ class ToDoList extends React.Component {
                                 {this.state.todo === '' || this.state.time === '' ?
                                     <button title="Please add todo and time" disabled className="btn btn-lg" type="button" variant="contained" >
                                         Submit
-                   </button>
+                                    </button>
                                     : <button onClick={this.submitNote} className="btn btn-primary btn-lg" type="button" variant="contained" color="primary">
                                         Submit
-                    </button>}
-                            </form>
+                                    </button>
+                                }
                         </div>
                         {this.state.notes.length !== 0 && <table className="table" style={{ marginTop: "2rem" }}>
                             <thead >
