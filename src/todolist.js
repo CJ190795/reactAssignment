@@ -8,11 +8,6 @@ class ToDoList extends React.Component{
             todo : '',
             time : 0,
             notes : [],
-            start : 0,
-            startTime : '',
-            endTime : '',
-            end : 0,
-            total : false
         }
     }
 
@@ -25,56 +20,62 @@ class ToDoList extends React.Component{
         })
     }
     submitNote = () =>{
-        console.log("submitting")
         let newNote = {
             todo : this.state.todo,
-            estTime : this.state.time
+            estTime : this.state.time,
+            startTime : 0,
+            endTime : 0,
+            total : false,
+            start : 0,
+            end : 0
         }
         this.setState((prevState)=>{
             return {
-            notes : prevState.notes.concat(newNote)
+            notes : prevState.notes.concat(newNote),
+            todo : '',
+            time : 0
             }
         })
     }
 
-    start=()=>{
+    start=(e)=>{
         var d = new Date(); 
         let time =   d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(); 
-        console.log("start " + time)
         this.setState({
-            start : d.getTime(),
-            startTime : time
+            notes :  this.state.notes.map((el,i) => (i == e.target.name ? Object.assign({}, el, { startTime : time }, {start : d.getTime()}) : el))          
         })
     }
 
-    end=()=>{
+    end=(e)=>{
         var d = new Date(); 
         let time =   d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds(); 
-        console.log("end " + time)
-        this.setState({
-            end : d.getTime(),
-            endTime : time,
-            total : true
-        })
+        if(this.state.notes[e.target.name].startTime != 0){
+            this.setState({
+                notes :  this.state.notes.map((el,i) => (i == e.target.name ? Object.assign({}, el, { endTime : time }, {end : d.getTime()}, {total : true}) : el))
+            })
+        }
+        else{
+            alert("Please Start the task first")
+        }
     }
 
 
     render(){
-
         const todo = this.state.notes.map((element,index)=>{            
             return (
                             <tr key = {index}>
-                            <td>{element.todo}</td>
-                            <td>{element.estTime}</td> 
-                            {this.state.start === 0 ? <td style={{textAlign : "center"}}><div style={{width : "100%"}}><button className="btn btn-primary btn-sm" type = "button" variant="contained" color="primary" onClick={this.start}>Start</button></div></td> : <td>{this.state.startTime}</td>}
-                            {this.state.end === 0 ? <td style={{textAlign : "center"}}><div style={{width : "100%"}}><button className="btn btn-primary btn-sm" type = "button" variant="contained" color="primary" onClick={this.end}>End</button></div></td> : <td>{this.state.endTime}</td>}
-                            {this.state.total ? <td>{(Number(this.state.end) - Number(this.state.start))/3600}</td> : <td>--:--:--</td>}
+                            <td style={{textAlign : "center"}}>{element.todo}</td>
+                            <td style={{textAlign : "center"}}>{element.estTime}</td> 
+                            {this.state.notes[index].startTime === 0 ? <td style={{textAlign : "center"}}><div style={{width : "100%"}}><button name={index}  className="btn btn-primary btn-sm" type = "button" variant="contained" color="primary" onClick={(e) => this.start(e)}>Start</button></div></td> : <td style={{textAlign : "center"}}>{this.state.notes[index].startTime}</td>}
+                            {this.state.notes[index].endTime === 0 ? <td style={{textAlign : "center"}}><div style={{width : "100%"}}><button name={index}  className="btn btn-primary btn-sm" type = "button" variant="contained" color="primary" onClick={(e) => this.end(e)}>End</button></div></td> : <td style={{textAlign : "center"}}>{this.state.notes[index].endTime}</td>}
+                            {this.state.notes[index].total ? <td style={{textAlign : "center"}}>{new Date((Number(this.state.notes[index].end) - Number(this.state.notes[index].start))).toISOString().substr(11, 8)}</td> : <td style={{textAlign : "center"}}>--:--:--</td>}
                             </tr>
                 )
 })
 
     return (
         <div className="container">
+        <h1>hi</h1>
             <div className="scores-block1 clearfix">
                 <div className="bg-white shadow-sm Assessment_Results">
                 <div style={{textAlign : "center"}}>
@@ -82,13 +83,13 @@ class ToDoList extends React.Component{
                 <div className="form-group row" >
                     <label className= "col-sm-3 col-form-label">Todo :  </label>
                     <div className="col-sm-6">
-                        <input className="form-control" type="text" name="todo" placeholder="Add Todo" onChange={(e)=>{this.handleInput(e)}}/>
+                        <input className="form-control" type="text" name="todo" placeholder="Add Todo" onChange={(e)=>{this.handleInput(e)}} value={this.state.todo}/>
                     </div>
                 </div>
                 <div className="form-group row">
-                    <label className = "col-sm-3 col-form-label">Estimated Time : </label>
+                    <label className = "col-sm-3 col-form-label">Estimated Time (minutes) : </label>
                     <div className="col-sm-6">
-                        <input className="form-control" type="text" name="time" placeholder="Estimated time" onChange={(e)=>{this.handleInput(e)}}/>
+                        <input className="form-control" type="text" name="time" placeholder="Estimated time" onChange={(e)=>{this.handleInput(e)}} value={this.state.time}/>
                     </div>
                 </div>
                     <button  onClick = {this.submitNote} className="btn btn-primary btn-lg" type = "button" variant="contained" color="primary">
