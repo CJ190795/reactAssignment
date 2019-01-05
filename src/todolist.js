@@ -88,7 +88,7 @@ class ToDoList extends React.Component {
                                 <div className="form-group row">
                                     <label className="col-sm-3 col-form-label">Estimated Time (minutes) : </label>
                                     <div className="col-sm-6">
-                                        <input className="form-control" type="text" name="time" placeholder="Estimated time" onChange={(e) => { this.handleInput(e) }} value={this.state.time} />
+                                        <input className="form-control" type="number" name="time" placeholder="Estimated time" onChange={(e) => { this.handleInput(e) }} value={this.state.time} />
                                     </div>
                                 </div>
                                 {this.state.todo === '' || this.state.time === '' ?
