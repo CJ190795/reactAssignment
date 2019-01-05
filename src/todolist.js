@@ -14,10 +14,10 @@ const ToDoList = () => {
    <thead >
      <tr >
        <th> <span className="icon-question-circle1" />Name</th>
-       <th> <span className="icon-comment-alt" />Estimated Time</th>
+       <th> <span className="icon-clock" />Estimated Time</th>
        <th> <span className="icon-clock" />Start Time</th>
-       <th> <span className="icon-star-half-alt" />End Time</th>
-       <th> <span className="icon-star-half-alt" />Total Time</th>
+       <th> <span className="icon-clock" />End Time</th>
+       <th> <span className="icon-clock" />Total Time</th>
      </tr>
    </thead>
    <tbody>
