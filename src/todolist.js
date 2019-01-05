@@ -100,7 +100,7 @@ class ToDoList extends React.Component {
                     </button>}
                             </form>
                         </div>
-                        <table className="table" style={{ marginTop: "2rem" }}>
+                        {this.state.notes.length !== 0 && <table className="table" style={{ marginTop: "2rem" }}>
                             <thead >
                                 <tr >
                                     <th> <span className="icon-question-circle1" style={{ marginRight: "2px" }} />ToDo</th>
@@ -113,7 +113,7 @@ class ToDoList extends React.Component {
                             <tbody >
                                 {todo}
                             </tbody>
-                        </table>
+                        </table>}
                     </div>
                 </div>
             </div>
