@@ -7,15 +7,24 @@ const ToDoList = () => {
         <div className="container">
             <div className="scores-block1 clearfix">
                 <div className="bg-white shadow-sm Assessment_Results">
-                    <h5 style={{ textAlign: "center" }}>Add Item </h5>
-                    <Grid container style={{ marginTop: '10%', textAlign: 'center' }}>
-                    <Grid item xs={12} md={9} lg={6} style={{ margin: '0 auto' }}>
-                        <input type = "text" />
+                <div>
+                <h5 style={{ textAlign: "center" }}>Add Todos </h5>
+                <div >
+                    <label>Todo :  </label>
+                    <div >
+                        <input type="text" name="todo" placeholder="Add Todo" />
+                    </div>
+                </div>
+                <div >
+                    <label>Estimated Time : </label>
+                    <div>
+                        <input type="text" name="time" placeholder="Estimated time" />
+                    </div>
+                </div>
                     <Button variant="contained" color="primary">
                     Submit
                     </Button>
-                    </Grid>
-                    </Grid>
+                </div>    
                     <table className="table">
                         <thead >
                             <tr >
