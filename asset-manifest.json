@@ -1,14 +1,14 @@
 {
   "main.css": "/reactAssignment/static/css/main.22c8347a.chunk.css",
-  "main.js": "/reactAssignment/static/js/main.da091235.chunk.js",
-  "main.js.map": "/reactAssignment/static/js/main.da091235.chunk.js.map",
+  "main.js": "/reactAssignment/static/js/main.d101ef59.chunk.js",
+  "main.js.map": "/reactAssignment/static/js/main.d101ef59.chunk.js.map",
   "static/js/1.f4789f78.chunk.js": "/reactAssignment/static/js/1.f4789f78.chunk.js",
   "static/js/1.f4789f78.chunk.js.map": "/reactAssignment/static/js/1.f4789f78.chunk.js.map",
   "runtime~main.js": "/reactAssignment/static/js/runtime~main.bc64e90d.js",
   "runtime~main.js.map": "/reactAssignment/static/js/runtime~main.bc64e90d.js.map",
-  "static/media/App.css": "/reactAssignment/static/media/graphic-icons.48c4ca09.eot",
+  "static/media/App.css": "/reactAssignment/static/media/graphic-icons.6885db11.ttf",
   "static/css/main.22c8347a.chunk.css.map": "/reactAssignment/static/css/main.22c8347a.chunk.css.map",
   "index.html": "/reactAssignment/index.html",
-  "precache-manifest.646c3bea119f23a1c4143a08f097bbbe.js": "/reactAssignment/precache-manifest.646c3bea119f23a1c4143a08f097bbbe.js",
+  "precache-manifest.779bd953d350dd14cba263b7742dcb0d.js": "/reactAssignment/precache-manifest.779bd953d350dd14cba263b7742dcb0d.js",
   "service-worker.js": "/reactAssignment/service-worker.js"
 }
