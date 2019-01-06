@@ -54,6 +54,34 @@ class ToDoList extends React.Component {
     }
 
 
+    //get estimated time average
+    getEstAvg = () =>{
+       let totalEst =  this.state.notes.reduce((total, current)=> {
+           console.log(total,current.estTime)
+             return total + Number(current.estTime); 
+            }, 0)
+        return Math.round(totalEst/this.state.notes.length*100)/100
+    
+    }
+
+    //get total time average
+    getTotAvg = () =>{
+        let todos = this.state.notes.slice();
+        let count = 0;
+        let sumTotal = 0;
+      for(var i=0; i<todos.length; i++){
+          if(todos[i].endTime !== 0){
+              count = count + 1;
+              sumTotal = sumTotal + (todos[i].endTime-todos[i].startTime)
+          }
+      }
+      if(count != 0){
+          console.log(count, sumTotal, (sumTotal/count)/60000)
+        return Math.round(((sumTotal/count)/60000)*100)/100
+      }
+    }
+
+
     render() {
         const todo = this.state.notes.map((element, index) => {
             return (
@@ -74,12 +102,16 @@ class ToDoList extends React.Component {
                         <TodoInput submitNote = {(e,todo,time)=>this.submitNote(e,todo,time)}/>
                         {
                         this.state.notes.length !== 0 && 
+                        <div>
                         <table className="table" style={{ marginTop: "2rem" }}>
                            <TodoHead />
                             <tbody >
                                 {todo}
                             </tbody>
                         </table>
+                        <div style={{textAlign : "center"}}> Average Estimated Time(minutes) : {this.getEstAvg()}</div>
+                        {this.getTotAvg() != null && <div style={{textAlign : "center", marginBottom : "4rem", marginTop : "1rem"}}> Average Total Time(minutes) : {this.getTotAvg()}</div>}
+                        </div>
                         }
                     </div>
                 </div>
